@@ -19,7 +19,7 @@ public class PersonJdbcDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    class PersonRowMapper implements RowMapper<Person>{
+    class PersonRowMapper implements RowMapper<Person> {
 
         @Override
         public Person mapRow(ResultSet resultSet, int rowNum) throws SQLException {
@@ -51,6 +51,7 @@ public class PersonJdbcDao {
                 new Object[]{person.getId(), person.getName(),
                         person.getLocation(), new Timestamp(person.getBirthDate().getTime())});
     }
+
     public int update(Person person) {
         return jdbcTemplate.update("update person set name = ?, location = ?, birth_date = ? where id = ?",
                 new Object[]{person.getName(),
